@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FoodService } from '../service/food/food.service';
+import { FoodDto } from '../shared/dto/Food.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tag',
@@ -17,20 +19,21 @@ export class TagComponent {
   ngOnInit():void{
     
     if(this.singleImageTagsCount.size == 0){
-      let foods = this.foodService.getAllFoods();
-      foods.flatMap(food => food.tags?food.tags:[])
-      .sort()
-      .map(tag=>{
-        if(this.tagsCount.get(tag)){ 
-          this.tagsCount.set(tag,this.tagsCount.get(tag)!+1);
-        }else{
-          this.tagsCount.set(tag,1);
-        }
+      let foodObs:Observable<FoodDto[]> = this.foodService.getAllFoods();
+
+      foodObs.subscribe(foodDtos=>{
+        foodDtos.flatMap(foodDto => foodDto.tags?foodDto.tags:[]).sort()
+        .map(tag=>{
+          if(this.tagsCount.get(tag)){ 
+            this.tagsCount.set(tag,this.tagsCount.get(tag)!+1);
+          }else{
+            this.tagsCount.set(tag,1);
+          }
+        })
+
+        this.tagsCount.set("All",foodDtos.flatMap(food=>food.tags).length);
       })
-  
-      this.tagsCount.set("All",foods.flatMap(food=>food.tags).length);
     }
-    
   }
 
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FoodService } from '../service/food/food.service';
 import { Food } from '../shared/model/Food';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { FoodDto } from '../shared/dto/Food.dto';
 
 @Component({
   selector: 'app-home',
@@ -19,13 +21,22 @@ export class HomeComponent {
         let searchTerm:string = params['searchTerm'];
         let tag:string = params['tag'];
 
+        let foodsObs!: Observable<FoodDto[]>;
+
         if(searchTerm){
-          this.foods = this.foodService.searchFoodsBySearhTerm(searchTerm); 
+          //foodsObs = this.foodService.searchFoodsBySearhTerm(searchTerm); 
         }else if(tag && tag != "All"){
-          this.foods = this.foodService.searchFoodsByTag(tag);
+          //foodsObs = this.foodService.searchFoodsByTag(tag);
         }else{
-          this.foods = this.foodService.getAllFoods();
+          foodsObs = this.foodService.getAllFoods();
         }
+
+        foodsObs.subscribe(foodDtos=>{
+          this.foods = foodDtos.map(foodDto => {
+            return {...foodDto, id: parseInt(foodDto.id)}
+          })
+        })
+  
     });
 
   }

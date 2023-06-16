@@ -1,0 +1,38 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+    flex-wrap: wrap;
+}
+
+.container > *{
+    min-width: 20rem;
+    max-width: 25rem;
+}
+
+img{
+    border-radius: 3em;
+    object-fit: cover;
+    flex: 1 0;
+    height: 20rem;
+    margin: 1rem;
+}
+
+.content{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+}
+
+.content .header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content .price::before{
+
+    content: "Price";
+    color: darkgray;
+}

@@ -1,0 +1,36 @@
+<app-not-found [visible]="!food" resetButtonText="Go to home page" resetButtonUrlLink="/"></app-not-found>
+
+<div *ngIf="food" class="container">
+    
+    <img src="{{food.imageUrl}}" alt="loading failed">
+
+    <div class="content">
+        <div class="header">
+            <div class="name">{{food.name}}</div>
+
+            <span class="favorite {{food.favorite ? '': 'not'}}">♡</span>    
+        </div>
+      
+        <div class="product-content-footer">
+            <div class="food-origin">
+                <span *ngFor="let origin of food.origins">
+                    {{origin}}
+                </span>
+            </div>
+
+            <app-tag [singleImageTagsCount]="tagsCount" justifyContent="start"></app-tag>
+            
+            <div class="cook-time">
+                {{food.cookTime}}
+            </div>
+        </div>
+        
+        <div class="price">
+            {{food.price|currency}}
+        </div>
+        
+        <button (click)="addToCart()">ADD TO CART</button>
+        
+    </div> 
+
+</div>

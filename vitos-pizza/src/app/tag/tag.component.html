@@ -1,0 +1,13 @@
+<div *ngIf="tagsCount.keys" [style.justifyContent]="justifyContent"> 
+    <a *ngFor="let tagCount of tagsCount | keyvalue" routerLink="/tag/{{tagCount.key}}">
+        {{tagCount.key}}({{tagCount.value}})
+    </a>
+</div>
+
+<div *ngIf="singleImageTagsCount.keys" [style.justifyContent]="justifyContent">
+    <div>
+        <a *ngFor="let tagCount of singleImageTagsCount | keyvalue" routerLink="/tag/{{tagCount.key}}">
+            {{tagCount.key}}
+        </a>
+    </div>
+</div>

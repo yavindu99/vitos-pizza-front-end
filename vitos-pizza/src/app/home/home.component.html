@@ -1,0 +1,12 @@
+<app-not-found [visible]="!foods || foods.length == 0" 
+resetButtonText="Reset" resetButtonUrlLink="/"></app-not-found>
+
+<div *ngIf="foods && foods.length > 0">
+    <app-search></app-search>
+    <app-tag></app-tag>
+    <ul>
+        <li *ngFor="let food of foods">
+            <app-food-details [food]="food"></app-food-details>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,66 @@
+a{
+    height: 22rem;
+    width: 20rem;
+    border: 1px solid whitesmoke;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+img{
+    object-fit: cover;
+    flex: 1 0;
+}
+
+a:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.content{
+    padding: 0.5rem 1rem;
+    position: relative;
+}
+
+.favorite{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.8rem;
+    font-size: 1.2rem;
+    color: red;
+}
+
+.favorite.not{
+    color: grey;
+}
+
+.product-content-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-content-footer .food-origin{
+    flex: 9;
+}
+
+.food-origin span{
+    border-radius: 2rem;
+    background: whitesmoke;
+    color: grey;
+    margin-right: 0.3rem;
+    display: inline-block;
+    font-size: 0.7rem;
+}
+
+.cook-time{
+    flex: 3;
+    text-align: right;
+    font-size: 0.8rem;
+}
+
+.price{
+    color: #414141;
+    margin-top: 0.7rem;
+}

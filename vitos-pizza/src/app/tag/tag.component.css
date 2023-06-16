@@ -1,0 +1,17 @@
+div{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style-type: none;
+}
+
+div a{
+    display: flex;
+    padding: 0.5rem;
+    border-radius: 8rem;
+    background-color: #f1f1f1;
+    margin-right: 0.3rem;
+    font-size: 0.9rem;
+    color: blue;
+    font-weight: 600;
+}

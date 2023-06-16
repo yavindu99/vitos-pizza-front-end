@@ -21,15 +21,17 @@ export class FoodPageComponent {
       
       let id:number = params["id"];
 
-      //this.food = this.foodService.findFoodById(id);
-      this.food.tags?.forEach(tag=>{
-        if(this.tagsCount.get(tag)){
-          this.tagsCount.set(tag,this.tagsCount.get(tag)!+1)
-        }else{
-          this.tagsCount.set(tag,1);
-        }
-      })
+      this.foodService.findFoodById(id).subscribe(foodDto=>{
+        this.food = {...foodDto, id: parseInt(foodDto.id)}
 
+        this.food.tags?.forEach(tag=>{
+          if(this.tagsCount.get(tag)){
+            this.tagsCount.set(tag,this.tagsCount.get(tag)!+1)
+          }else{
+            this.tagsCount.set(tag,1);
+          }
+        })
+      });
     })
   }
 

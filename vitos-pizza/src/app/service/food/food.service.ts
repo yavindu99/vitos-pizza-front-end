@@ -19,11 +19,13 @@ export class FoodService {
       return foodsObs;
   }
 
-  // findFoodById(id:number): Food {
+  findFoodById(id:number): Observable<FoodDto> {
 
-  //   //return this.getAllFoods().filter(food=>food.id==id)[0]; 
+    let foodsObs: Observable<FoodDto> =  this.http.get<FoodDto>(BASE_URL + '/api/product/'+id);
+      
+    return foodsObs;
 
-  // }
+  }
 
   // searchFoodsBySearhTerm(searchTerm:string): Food[] {
 
